@@ -15,7 +15,7 @@ namespace TestUploadForbidden.UnitTests
         [OneTimeSetUp]
         public async Task Setup()
         {
-            this._host = Program.CreateHostBuilder(new string[] { "--urls", "https://localhost:5001" }).Build();
+            this._host = Program.CreateHostBuilder(new string[] { "--urls", "https://localhost:5001", "--environment", "Development" }).Build();
             await this._host.StartAsync();
         }
 
@@ -55,6 +55,7 @@ namespace TestUploadForbidden.UnitTests
                     Content = formContent
                 };
             using var response = await client.SendAsync(message);
+            var body = await response.Content.ReadAsStringAsync();
             Assert.AreEqual(HttpStatusCode.Forbidden, response.StatusCode);
         }
     }

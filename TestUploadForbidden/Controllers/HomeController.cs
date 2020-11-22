@@ -14,6 +14,7 @@ namespace TestUploadForbidden.Controllers
         }
 
         [RequestSizeLimit(2_000_000_000)]// 2GB
+        [RequestFormLimits(MultipartBodyLengthLimit = 2_000_000_000)]// 2GB
         [HttpPost("/")]
         public ActionResult Index(IFormFile file)
         {
