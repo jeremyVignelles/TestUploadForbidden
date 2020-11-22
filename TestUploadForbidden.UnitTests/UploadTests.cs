@@ -12,17 +12,18 @@ namespace TestUploadForbidden.UnitTests
     {
         private IHost _host;
 
-        [SetUp]
+        [OneTimeSetUp]
         public async Task Setup()
         {
             this._host = Program.CreateHostBuilder(new string[] { "--urls", "https://localhost:5001" }).Build();
             await this._host.StartAsync();
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public async Task Teardown()
         {
             await this._host.StopAsync();
+            this._host.Dispose();
         }
 
 

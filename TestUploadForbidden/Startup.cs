@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -21,12 +14,8 @@ namespace TestUploadForbidden
         {
             var defaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-            // Jwt authentication is consistent, uncomment this line to see the result.
-            //defaultScheme = JwtBearerDefaults.AuthenticationScheme;
-
             services.AddAuthentication(defaultScheme)
-                .AddCookie()
-                .AddJwtBearer();
+                .AddCookie();
             services.AddControllers();
         }
 
